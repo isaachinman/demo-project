@@ -1,0 +1,15 @@
+{
+  "createdAt": "2026-10-30T23:57:07.473Z",
+  "id": "4c55b7a7-a525-4ae7-aef1-7a72866e0cb5",
+  "kind": "convention",
+  "payload": {
+    "summary": "Dependencies are pinned exactly and must be at least 14 days old",
+    "rules": [
+      "bunfig.toml sets exact = true and minimumReleaseAge = 14 days, including transitive dependencies",
+      "Pick the newest release that satisfies the age rule, and avoid duplicate transitive copies (e.g. ioredis matches the version bullmq depends on)"
+    ]
+  },
+  "searchText": "dependency pinning release age bunfig",
+  "source": "agent",
+  "subject": "dependencies.policy"
+}

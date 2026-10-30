@@ -1,0 +1,18 @@
+{
+  "createdAt": "2026-10-30T23:57:07.178Z",
+  "id": "f9d9b327-f5f1-4340-955c-8464a3b24f2f",
+  "kind": "decision",
+  "payload": {
+    "summary": "callModel converts a valibot schema to JSON Schema for Anthropic structured outputs, then validates the reply with valibot again",
+    "rationale": [
+      "Structured outputs accept anyOf but not oneOf, which valibot variant emits; toJsonSchema overrideSchema renames oneOf to anyOf node by node",
+      "The $schema draft marker is dropped because the API has no use for it"
+    ],
+    "consequences": [
+      "Model and effort are constants in src/config.ts, not environment variables"
+    ]
+  },
+  "searchText": "anthropic claude structured outputs valibot json schema oneOf anyOf",
+  "source": "agent",
+  "subject": "ai.structured-outputs"
+}

@@ -1,0 +1,19 @@
+{
+  "createdAt": "2026-10-30T23:57:06.380Z",
+  "id": "782993e8-0e34-4ec5-80fa-c2eded4cecb2",
+  "kind": "convention",
+  "payload": {
+    "summary": "Module layout and import conventions",
+    "rules": [
+      "Infra modules expose an index.ts barrel and are imported by their root: @demo-project/ai, @demo-project/db, @demo-project/lib, @demo-project/redis",
+      "Relative imports only for direct siblings; otherwise the @demo-project alias",
+      "File and directory names are camelCase; React components and src/types files are PascalCase; TanStack route files keep its required names (__root.tsx)",
+      "Utilities live in src/utils/<category>/<name>/{index.ts,<name>.ts,<name>.test.ts}",
+      "Durations use toMS from @demo-project/utils/data/toMS (toMS.seconds(120)), never raw millisecond literals",
+      "Valibot is imported as v from @demo-project/lib"
+    ]
+  },
+  "searchText": "barrel imports alias camelCase naming toMS valibot conventions",
+  "source": "agent",
+  "subject": "code.modules"
+}

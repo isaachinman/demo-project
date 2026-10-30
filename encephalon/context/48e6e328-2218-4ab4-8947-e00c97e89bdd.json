@@ -1,0 +1,40 @@
+{
+  "createdAt": "2026-10-30T23:56:25.450Z",
+  "id": "48e6e328-2218-4ab4-8947-e00c97e89bdd",
+  "kind": "context",
+  "payload": {
+    "recognisedTopLevelFiles": [
+      "biome.json",
+      "bun.lock",
+      "bunfig.toml",
+      "docker-compose.yml",
+      "package.json",
+      "tsconfig.json",
+      "vite.config.ts"
+    ],
+    "scanTruncated": false,
+    "scanTruncationReasons": [],
+    "sources": [
+      ".github/workflows",
+      "biome.json",
+      "bun.lock",
+      "bunfig.toml",
+      "docker-compose.yml",
+      "package.json",
+      "tsconfig.json",
+      "vite.config.ts"
+    ],
+    "summary": "Derived shallow repository overview captured during Encephalon initialisation.",
+    "topLevelDirectories": [
+      ".claude",
+      ".github",
+      ".impeccable",
+      ".railway",
+      ".tanstack",
+      "public",
+      "src"
+    ]
+  },
+  "source": "encephalon:init",
+  "subject": "encephalon:init/repository-overview"
+}

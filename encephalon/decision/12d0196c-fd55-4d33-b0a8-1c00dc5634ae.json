@@ -1,0 +1,17 @@
+{
+  "createdAt": "2026-10-30T23:57:06.644Z",
+  "id": "12d0196c-fd55-4d33-b0a8-1c00dc5634ae",
+  "kind": "decision",
+  "payload": {
+    "summary": "The Redis client lives in src/redis, not src/lib",
+    "rationale": [
+      "config.ts imports v from the @demo-project/lib barrel; if lib also exported the Redis client, loading config would load redis/client.ts, which reads config before it exists and crashes at startup"
+    ],
+    "consequences": [
+      "Keep src/lib free of anything that imports config"
+    ]
+  },
+  "searchText": "redis lib barrel import cycle config",
+  "source": "agent",
+  "subject": "code.lib-redis-split"
+}

@@ -1,0 +1,16 @@
+{
+  "createdAt": "2026-10-30T23:57:06.927Z",
+  "id": "b0976c73-d43e-4f43-8919-67bc387f53bd",
+  "kind": "convention",
+  "payload": {
+    "summary": "Logging uses pino; HTTP requests are logged with pino-http",
+    "rules": [
+      "Call log.info({ fields }, message) with fields first",
+      "Pass errors as { err: error } so pino serialises the stack",
+      "pino-http is attached in src/server/app.ts through Hono Node bindings (context.env.incoming/outgoing), which is why the app is typed Hono<{ Bindings: HttpBindings }>"
+    ]
+  },
+  "searchText": "pino logging pino-http hono bindings",
+  "source": "agent",
+  "subject": "code.logging"
+}

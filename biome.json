@@ -1,0 +1,109 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [
+              ":NODE:",
+              ["react"],
+              ":BLANK_LINE:",
+              ["@*/**", "!@demo-project/**"],
+              ["*", "!react"],
+              ":BLANK_LINE:",
+              ["@demo-project/**"],
+              ":BLANK_LINE:",
+              ":PATH:"
+            ]
+          }
+        },
+        "useSortedKeys": "on"
+      }
+    },
+    "enabled": true,
+    "includes": ["**", "!**/*/package.json", "!package.json"]
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    }
+  },
+  "extends": ["ultracite"],
+  "files": {
+    "includes": ["**", "!.claude", "!.impeccable", "!encephalon"]
+  },
+  "formatter": {
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 120
+  },
+  "javascript": {
+    "formatter": {
+      "arrowParentheses": "asNeeded",
+      "attributePosition": "multiline",
+      "jsxQuoteStyle": "single",
+      "quoteStyle": "single",
+      "semicolons": "asNeeded",
+      "trailingCommas": "all"
+    }
+  },
+  "linter": {
+    "rules": {
+      "a11y": {
+        "noNoninteractiveElementInteractions": "off",
+        "noStaticElementInteractions": "off",
+        "noSvgWithoutTitle": "off"
+      },
+      "complexity": {
+        "noExcessiveCognitiveComplexity": "off"
+      },
+      "correctness": {
+        "noUnusedImports": {
+          "fix": "safe",
+          "level": "error"
+        },
+        "noUnusedVariables": {
+          "level": "error",
+          "options": {
+            "ignoreRestSiblings": true
+          }
+        },
+        "useExhaustiveDependencies": "off"
+      },
+      "nursery": {
+        "noDeprecatedImports": "off",
+        "noFloatingPromises": "error",
+        "noMisusedPromises": "error",
+        "noUselessUndefined": "off",
+        "useConsistentArrowReturn": "error"
+      },
+      "performance": {
+        "noBarrelFile": "off",
+        "noNamespaceImport": {
+          "level": "error",
+          "options": {}
+        }
+      },
+      "style": {
+        "noEnum": "off",
+        "noMagicNumbers": "off",
+        "noNestedTernary": "error",
+        "noParameterAssign": "off",
+        "useFilenamingConvention": "off",
+        "useNodejsImportProtocol": "off"
+      },
+      "suspicious": {
+        "noArrayIndexKey": "off",
+        "noConsole": "error",
+        "noExplicitAny": "off"
+      }
+    }
+  },
+  "vcs": {
+    "clientKind": "git",
+    "enabled": true,
+    "useIgnoreFile": true
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "createdAt": "2026-10-30T23:57:06.110Z",
+  "id": "d6a75082-7800-43cc-a138-edcc999e73bc",
+  "kind": "architecture",
+  "payload": {
+    "summary": "Three deployables from one repo: Hono API (src/server), BullMQ worker (src/worker) and a Vite/React web app (src/web)",
+    "details": [
+      "API and worker deploy to Railway from one Dockerfile; infra is code in .railway/railway.ts, applied with `railway config plan/apply`",
+      "Railway GitHub triggers use checkSuites, so deploys wait for CI on main",
+      "Web deploys to Cloudflare Pages through its Git integration; its build image uses asdf, so .tool-versions must name Node as `nodejs`, not `node`",
+      "GET /health is real readiness: it probes Postgres and Redis and returns 503 if either fails; Railway uses it as the healthcheck",
+      "The server listens on `::` and ioredis uses family 0 because Railway private networking is IPv6"
+    ]
+  },
+  "searchText": "railway cloudflare pages deploy healthcheck worker api web topology",
+  "source": "agent",
+  "subject": "services.topology"
+}

@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-30T23:51:09.646272+00:00",
+  "title": "Design System: Demo Project",
+  "extensions": {
+    "colorMeta": {
+      "surface": {
+        "role": "neutral",
+        "displayName": "Bench Black",
+        "canonical": null,
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#595959",
+          "#737373",
+          "#8c8c8c",
+          "#adadad",
+          "#d1d1d1",
+          "#f2f2f2"
+        ]
+      },
+      "card": {
+        "role": "neutral",
+        "displayName": "Raised Charcoal",
+        "canonical": null,
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#595959",
+          "#737373",
+          "#8c8c8c",
+          "#adadad",
+          "#d1d1d1",
+          "#f2f2f2"
+        ]
+      },
+      "ink": {
+        "role": "primary",
+        "displayName": "Bench Ink",
+        "canonical": null,
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#595959",
+          "#737373",
+          "#8c8c8c",
+          "#adadad",
+          "#d1d1d1",
+          "#f2f2f2"
+        ]
+      },
+      "ink-hover": {
+        "role": "neutral",
+        "displayName": "Pressed Ink",
+        "canonical": null,
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#595959",
+          "#737373",
+          "#8c8c8c",
+          "#adadad",
+          "#d1d1d1",
+          "#f2f2f2"
+        ]
+      },
+      "ink-inverse": {
+        "role": "neutral",
+        "displayName": "Inverse Graphite",
+        "canonical": null,
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#595959",
+          "#737373",
+          "#8c8c8c",
+          "#adadad",
+          "#d1d1d1",
+          "#f2f2f2"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Dimmed Ink",
+        "canonical": null,
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#595959",
+          "#737373",
+          "#8c8c8c",
+          "#adadad",
+          "#d1d1d1",
+          "#f2f2f2"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": null,
+        "tonalRamp": [
+          "rgb(255 255 255 / 0.02)",
+          "rgb(255 255 255 / 0.04)",
+          "rgb(255 255 255 / 0.06)",
+          "rgb(255 255 255 / 0.09)",
+          "rgb(255 255 255 / 0.12)",
+          "rgb(255 255 255 / 0.16)",
+          "rgb(255 255 255 / 0.22)",
+          "rgb(255 255 255 / 0.3)"
+        ]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Rule",
+        "canonical": null,
+        "tonalRamp": [
+          "rgb(255 255 255 / 0.02)",
+          "rgb(255 255 255 / 0.04)",
+          "rgb(255 255 255 / 0.06)",
+          "rgb(255 255 255 / 0.09)",
+          "rgb(255 255 255 / 0.12)",
+          "rgb(255 255 255 / 0.16)",
+          "rgb(255 255 255 / 0.22)",
+          "rgb(255 255 255 / 0.3)"
+        ]
+      },
+      "border-strong": {
+        "role": "neutral",
+        "displayName": "Strong Rule",
+        "canonical": null,
+        "tonalRamp": [
+          "rgb(255 255 255 / 0.02)",
+          "rgb(255 255 255 / 0.04)",
+          "rgb(255 255 255 / 0.06)",
+          "rgb(255 255 255 / 0.09)",
+          "rgb(255 255 255 / 0.12)",
+          "rgb(255 255 255 / 0.16)",
+          "rgb(255 255 255 / 0.22)",
+          "rgb(255 255 255 / 0.3)"
+        ]
+      },
+      "fill": {
+        "role": "neutral",
+        "displayName": "Faint Fill",
+        "canonical": null,
+        "tonalRamp": [
+          "rgb(255 255 255 / 0.02)",
+          "rgb(255 255 255 / 0.04)",
+          "rgb(255 255 255 / 0.06)",
+          "rgb(255 255 255 / 0.09)",
+          "rgb(255 255 255 / 0.12)",
+          "rgb(255 255 255 / 0.16)",
+          "rgb(255 255 255 / 0.22)",
+          "rgb(255 255 255 / 0.3)"
+        ]
+      },
+      "failure": {
+        "role": "tertiary",
+        "displayName": "Ember",
+        "canonical": null,
+        "tonalRamp": [
+          "#41140c",
+          "#6c2114",
+          "#972e1b",
+          "#c23b23",
+          "#dc553d",
+          "#e68675",
+          "#f1bbb1",
+          "#fbece9"
+        ]
+      },
+      "attention": {
+        "role": "tertiary",
+        "displayName": "Brass",
+        "canonical": null,
+        "tonalRamp": [
+          "#402e0d",
+          "#6a4d15",
+          "#956b1e",
+          "#bf8a26",
+          "#d9a340",
+          "#e4be77",
+          "#f0dab2",
+          "#fbf5ea"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Page and section headings, balanced."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Descriptions and running text in Dimmed Ink, about 65ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Chips, metadata, small controls."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Code, IDs, timings and measurements only."
+      }
+    },
+    "shadows": [
+      {
+        "name": "rest-lift",
+        "value": "0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -12px rgb(0 0 0 / 0.6)",
+        "purpose": "Cards and panels at rest."
+      },
+      {
+        "name": "hover-lift",
+        "value": "0 2px 4px rgb(0 0 0 / 0.3), 0 16px 32px -12px rgb(0 0 0 / 0.65)",
+        "purpose": "Interactive cards on hover."
+      },
+      {
+        "name": "float",
+        "value": "0 25px 50px -12px rgb(0 0 0 / 0.75)",
+        "purpose": "Tooltips and other floating layers."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "Blur and opacity in reveals; transform settles."
+      },
+      {
+        "name": "state-change",
+        "value": "120ms ease",
+        "purpose": "Hover colour changes on controls."
+      },
+      {
+        "name": "spring-press",
+        "value": "spring(stiffness 380, damping 32)",
+        "purpose": "Press and pull responses on pressable controls."
+      },
+      {
+        "name": "spring-reveal",
+        "value": "spring(stiffness 170, damping 22, mass 0.7)",
+        "purpose": "Blur Rise text entrance."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "2xl",
+        "value": "1536px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Ink-filled action with a spring press.",
+      "html": "<button class=\"ds-btn-primary\">Run job</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 13px; border: 1px solid var(--ink, #f5f5f5); border-radius: 10px; background: var(--ink, #f5f5f5); color: var(--ink-inverse, #262626); font: 500 14px/1 -apple-system, system-ui, sans-serif; cursor: pointer; transition: background-color 120ms ease, border-color 120ms ease, transform 160ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-btn-primary:hover { background: var(--ink-hover, #d9d9d9); border-color: var(--ink-hover, #d9d9d9); } .ds-btn-primary:active { transform: scale(0.97); } .ds-btn-primary:focus-visible { outline: 2px solid var(--border-strong, rgb(255 255 255 / 0.22)); outline-offset: 2px; }"
+    },
+    {
+      "name": "Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Faint well with a rule border that brightens on focus.",
+      "html": "<input class=\"ds-input\" placeholder=\"Search units\" />",
+      "css": ".ds-input { height: 36px; width: 240px; padding: 0 12px; border: 1px solid var(--border, rgb(255 255 255 / 0.12)); border-radius: 10px; background: var(--fill, rgb(255 255 255 / 0.04)); color: var(--ink, #f5f5f5); font: 14px -apple-system, system-ui, sans-serif; transition: border-color 120ms ease; } .ds-input::placeholder { color: var(--muted, #a1a1a1); } .ds-input:focus-visible { outline: none; border-color: var(--muted, #a1a1a1); }"
+    },
+    {
+      "name": "Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Pill label for counts and metadata.",
+      "html": "<span class=\"ds-chip\">3 units</span>",
+      "css": ".ds-chip { display: inline-block; padding: 2px 8px; border: 1px solid var(--hairline, rgb(255 255 255 / 0.06)); border-radius: 999px; background: var(--card, #1b1b1b); color: var(--muted, #a1a1a1); font: 500 12px/1.33 -apple-system, system-ui, sans-serif; white-space: nowrap; }"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Lifted container on the bench.",
+      "html": "<div class=\"ds-card\"><h3 class=\"ds-card-title\">Worker</h3><p class=\"ds-card-body\">Listening on the jobs queue.</p></div>",
+      "css": ".ds-card { width: 280px; padding: 16px; border: 1px solid var(--hairline, rgb(255 255 255 / 0.06)); border-radius: 10px; background: var(--card, #1b1b1b); box-shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -12px rgb(0 0 0 / 0.6); transition: box-shadow 160ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-card:hover { box-shadow: 0 2px 4px rgb(0 0 0 / 0.3), 0 16px 32px -12px rgb(0 0 0 / 0.65); } .ds-card-title { margin: 0; color: var(--ink, #f5f5f5); font: 600 14px/1.4 -apple-system, system-ui, sans-serif; } .ds-card-body { margin: 4px 0 0; color: var(--muted, #a1a1a1); font: 14px/1.625 -apple-system, system-ui, sans-serif; }"
+    },
+    {
+      "name": "Tooltip",
+      "kind": "custom",
+      "refersTo": "tooltip",
+      "description": "Floating layer with the float shadow.",
+      "html": "<div class=\"ds-tooltip\">vault-02 \u00b7 41 \u00b0C</div>",
+      "css": ".ds-tooltip { display: inline-block; padding: 8px 12px; border: 1px solid var(--border, rgb(255 255 255 / 0.12)); border-radius: 8px; background: var(--card, #1b1b1b); color: var(--ink, #f5f5f5); font: 12px Menlo, monospace; box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.75); }"
+    },
+    {
+      "name": "Blur Rise Heading",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Signature entrance: text rises out of a blur once per view.",
+      "html": "<h1 class=\"ds-rise\">Demo Project</h1>",
+      "css": ".ds-rise { margin: 0; color: var(--ink, #f5f5f5); font: 600 30px/1.2 -apple-system, system-ui, sans-serif; letter-spacing: -0.025em; animation: ds-rise 600ms cubic-bezier(0.23, 1, 0.32, 1) both; } @keyframes ds-rise { from { opacity: 0; filter: blur(8px); transform: translateY(0.4em) scale(0.96); } to { opacity: 1; filter: blur(0); transform: none; } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Quiet Workbench",
+    "overview": "A calm, near-black work surface where content and motion do the talking and the chrome stays out of the way. The reference is devl.dev, built on coss ui (Base UI and Tailwind): small type, hairline outlines, generous empty space, and one well-made moment of motion per view rather than effects everywhere.\n\nSurfaces lift gently off the bench. Cards and panels sit on soft ambient shadows; floating layers cast a deeper one. Interaction is tactile and precise: controls give way slightly when pressed and spring back, and the springs are tuned so nothing wobbles.",
+    "keyCharacteristics": [
+      "Dark, low-contrast neutrals with a single bright ink for emphasis.",
+      "Hairline borders and soft lift instead of heavy fills.",
+      "Sans for reading, mono only for code, data and measurements.",
+      "Motion that reveals content (Blur Rise) and responds to touch (spring press), never decorates."
+    ],
+    "rules": [
+      {
+        "name": "The One Light Rule",
+        "body": "Bench Ink is the only bright colour. Ember and Brass appear only when something is actually wrong or pending, never as accents.",
+        "section": "colors"
+      },
+      {
+        "name": "The Honest Mono Rule",
+        "body": "Monospace marks machine output: code, data, units. It is never used to make something look \"technical\".",
+        "section": "typography"
+      },
+      {
+        "name": "The Soft Lift Rule",
+        "body": "Every shadow has a downward offset and a wide blur. No zero-offset glows, no coloured halos, no hard block shadows.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do reuse devl.dev / coss ui patterns before inventing new ones, ported to the repo's conventions.",
+      "Do keep Bench Ink as the only bright colour on a screen.",
+      "Do lift cards with the Rest lift shadow and a hairline edge.",
+      "Do give pressable controls the 0.97 spring press.",
+      "Do theme the browser surfaces too: text selection, focus rings, scrollbars."
+    ],
+    "donts": [
+      "Don't use Ember or Brass as decoration; they mean failure and warning.",
+      "Don't add more than one entrance animation per view.",
+      "Don't use monospace for headings or marketing copy.",
+      "Don't use zero-offset glows, coloured shadows or hard block shadows.",
+      "Don't use Inter, Lucide or SF Symbols; icons come from UntitledUI."
+    ]
+  }
+}

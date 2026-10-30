@@ -1,0 +1,43 @@
+{
+  "createdAt": "2026-10-30T23:56:25.451Z",
+  "id": "fecf7759-ac38-475b-8a23-fa84f2923feb",
+  "kind": "architecture",
+  "payload": {
+    "summary": "Derived package and tooling layout captured during Encephalon initialisation.",
+    "packageName": "demo-project",
+    "packageManager": "bun",
+    "packageManagerEvidence": {
+      "declared": "bun",
+      "lockfiles": [
+        {
+          "file": "bun.lock",
+          "manager": "bun"
+        }
+      ],
+      "manager": "bun",
+      "status": "declared-and-lockfile"
+    },
+    "recognisedFiles": [
+      "biome.json",
+      "bun.lock",
+      "bunfig.toml",
+      "docker-compose.yml",
+      "package.json",
+      "tsconfig.json",
+      "vite.config.ts"
+    ],
+    "sources": [
+      "biome.json",
+      "bun.lock",
+      "bunfig.toml",
+      "docker-compose.yml",
+      "package.json",
+      "tsconfig.json",
+      "vite.config.ts"
+    ],
+    "workspaceConfigured": false,
+    "workspacePatterns": []
+  },
+  "source": "encephalon:init",
+  "subject": "encephalon:init/tooling-layout"
+}

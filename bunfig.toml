@@ -1,0 +1,7 @@
+telemetry = false
+
+[install]
+linker = "hoisted"
+exact = true
+saveTextLockfile = true
+minimumReleaseAge = 1209600 # 14 days, applies to transitive dependencies too

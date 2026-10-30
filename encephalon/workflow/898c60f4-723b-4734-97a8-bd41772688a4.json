@@ -1,0 +1,156 @@
+{
+  "createdAt": "2026-10-30T23:56:25.452Z",
+  "id": "898c60f4-723b-4734-97a8-bd41772688a4",
+  "kind": "workflow",
+  "payload": {
+    "scriptInvocations": [
+      {
+        "arguments": [
+          "run",
+          "build"
+        ],
+        "executable": "bun",
+        "scriptKey": "build"
+      },
+      {
+        "arguments": [
+          "run",
+          "build:app"
+        ],
+        "executable": "bun",
+        "scriptKey": "build:app"
+      },
+      {
+        "arguments": [
+          "run",
+          "build:web"
+        ],
+        "executable": "bun",
+        "scriptKey": "build:web"
+      },
+      {
+        "arguments": [
+          "run",
+          "db:generate"
+        ],
+        "executable": "bun",
+        "scriptKey": "db:generate"
+      },
+      {
+        "arguments": [
+          "run",
+          "dev"
+        ],
+        "executable": "bun",
+        "scriptKey": "dev"
+      },
+      {
+        "arguments": [
+          "run",
+          "dev:server"
+        ],
+        "executable": "bun",
+        "scriptKey": "dev:server"
+      },
+      {
+        "arguments": [
+          "run",
+          "dev:web"
+        ],
+        "executable": "bun",
+        "scriptKey": "dev:web"
+      },
+      {
+        "arguments": [
+          "run",
+          "dev:worker"
+        ],
+        "executable": "bun",
+        "scriptKey": "dev:worker"
+      },
+      {
+        "arguments": [
+          "run",
+          "init"
+        ],
+        "executable": "bun",
+        "scriptKey": "init"
+      },
+      {
+        "arguments": [
+          "run",
+          "lint"
+        ],
+        "executable": "bun",
+        "scriptKey": "lint"
+      },
+      {
+        "arguments": [
+          "run",
+          "lint:fix"
+        ],
+        "executable": "bun",
+        "scriptKey": "lint:fix"
+      },
+      {
+        "arguments": [
+          "run",
+          "start:server"
+        ],
+        "executable": "bun",
+        "scriptKey": "start:server"
+      },
+      {
+        "arguments": [
+          "run",
+          "start:worker"
+        ],
+        "executable": "bun",
+        "scriptKey": "start:worker"
+      },
+      {
+        "arguments": [
+          "run",
+          "test"
+        ],
+        "executable": "bun",
+        "scriptKey": "test"
+      },
+      {
+        "arguments": [
+          "run",
+          "typecheck"
+        ],
+        "executable": "bun",
+        "scriptKey": "typecheck"
+      }
+    ],
+    "scriptKeys": [
+      "build",
+      "build:app",
+      "build:web",
+      "db:generate",
+      "dev",
+      "dev:server",
+      "dev:web",
+      "dev:worker",
+      "init",
+      "lint",
+      "lint:fix",
+      "start:server",
+      "start:worker",
+      "test",
+      "typecheck"
+    ],
+    "sources": [
+      "package.json",
+      ".github/workflows/ci.yml"
+    ],
+    "summary": "Derived package-script entry points and CI workflow filenames; use scriptInvocations as argv and treat scriptKeys as discovery-only.",
+    "workflowFiles": [
+      ".github/workflows/ci.yml"
+    ]
+  },
+  "source": "encephalon:init",
+  "subject": "encephalon:init/commands-ci"
+}
