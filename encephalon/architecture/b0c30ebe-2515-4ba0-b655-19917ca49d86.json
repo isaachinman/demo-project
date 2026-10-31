@@ -1,0 +1,21 @@
+{
+  "createdAt": "2026-10-31T15:51:05.205Z",
+  "id": "b0c30ebe-2515-4ba0-b655-19917ca49d86",
+  "kind": "architecture",
+  "payload": {
+    "summary": "Memory is built after each call by the extractMemories BullMQ job, never on the live turn path",
+    "details": [
+      "src/memory splits a pure core (extractMemories: one callModel call, no DB; reused by the eval harness) from loadExtractionInput and applyExtraction (DB)",
+      "The job skips conversations with extractedAt set and marks calls with fewer than 2 user turns as extracted without calling the model",
+      "applyExtraction filters model-returned memory and follow-up ids to ones the user owns, caps follow-ups at 3, and writes everything in one transaction (memories, supersededAt, resolvedAt, follow_ups, conversation summary and extractedAt, users.nextOpener)",
+      "Array size limits are not expressed in the valibot schema because strict structured outputs reject them; caps are applied in code",
+      "The extraction prompt forbids inferring sensitive traits or gender"
+    ],
+    "caveats": [
+      "Two calls from the same user ending close together can extract concurrently (worker concurrency 5) and race on nextOpener; accepted for a demo"
+    ]
+  },
+  "searchText": "memory extraction job follow ups opener superseded worker callModel",
+  "source": "agent",
+  "subject": "memory.extraction"
+}
