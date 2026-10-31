@@ -1,6 +1,7 @@
 import type { DisconnectionDetails, HookOptions } from '@elevenlabs/react'
 
 import { v } from '@demo-project/lib/valibot'
+import { loadMemory, refreshAfterCall } from '@demo-project/web/stores/memory/memory.actions'
 import { apiUrl } from '@demo-project/web/utils/apiUrl'
 
 import { type CallError, useCallStore } from './call.store'
@@ -45,20 +46,22 @@ export const loadUsers = async () => {
     const response = await fetch(apiUrl('/api/users'))
     const users = v.parse(Users, await response.json())
     const saved = readSavedUserId()
+    const selectedUserId = users.find(user => user.id === saved)?.id ?? users[0]?.id ?? null
 
-    useCallStore.setState({
-      error: null,
-      selectedUserId: users.find(user => user.id === saved)?.id ?? users[0]?.id ?? null,
-      users,
-    })
+    useCallStore.setState({ error: null, selectedUserId, users })
+
+    if (selectedUserId) {
+      await loadMemory(selectedUserId)
+    }
   } catch {
     fail('users_failed')
   }
 }
 
-export const selectUser = (userId: string) => {
+export const selectUser = async (userId: string) => {
   saveUserId(userId)
   useCallStore.setState({ drawerOpen: false, selectedUserId: userId })
+  await loadMemory(userId)
 }
 
 export const setDrawerOpen = (drawerOpen: boolean) => useCallStore.setState({ drawerOpen })
@@ -124,8 +127,20 @@ export const startCall = async (startSession: StartSession) => {
 
 export const callConnected = () => useCallStore.setState({ phase: 'connected' })
 
-export const callEnded = (details: DisconnectionDetails) =>
-  details.reason === 'error' ? fail('disconnected') : useCallStore.setState({ phase: 'idle' })
+export const callEnded = async (details: DisconnectionDetails) => {
+  const { selectedUserId } = useCallStore.getState()
+
+  if (details.reason === 'error') {
+    fail('disconnected')
+  } else {
+    useCallStore.setState({ phase: 'idle' })
+  }
+
+  // Even a dropped call reaches the webhook, so memory may still grow.
+  if (selectedUserId) {
+    await refreshAfterCall(selectedUserId)
+  }
+}
 
 export const callErrored = () => {
   const { phase } = useCallStore.getState()
