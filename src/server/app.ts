@@ -2,8 +2,12 @@ import type { HttpBindings } from '@hono/node-server'
 import { Hono } from 'hono'
 import { pinoHttp } from 'pino-http'
 
+import { config } from '@demo-project/config'
 import { log } from '@demo-project/lib'
 import { healthEndpoint } from '@demo-project/server/health'
+import { usersEndpoint } from '@demo-project/server/users'
+
+import { cors } from 'hono/cors'
 
 const httpLog = pinoHttp({ logger: log })
 
@@ -15,4 +19,13 @@ app.use(async (context, next) => {
   await next()
 })
 
+// In production the web app is served from Cloudflare Pages, a different origin; in dev Vite proxies /api.
+app.use('/api/*', cors({ origin: config.WEB_ORIGIN }))
+
+app.onError((error, context) => {
+  log.error({ err: error, path: context.req.path }, 'server: request failed')
+  return context.json({ error: 'internal_error' }, 500)
+})
+
 app.get('/health', healthEndpoint)
+app.get('/api/users', usersEndpoint)

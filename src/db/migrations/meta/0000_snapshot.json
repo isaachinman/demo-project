@@ -1,0 +1,411 @@
+{
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  },
+  "dialect": "postgresql",
+  "enums": {
+    "public.memory_category": {
+      "name": "memory_category",
+      "schema": "public",
+      "values": ["background", "people", "work", "interests", "plans", "preferences", "feelings"]
+    },
+    "public.turn_role": {
+      "name": "turn_role",
+      "schema": "public",
+      "values": ["user", "agent"]
+    }
+  },
+  "id": "4a59769c-977c-4077-aabf-ea6b998ff5bb",
+  "policies": {},
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "roles": {},
+  "schemas": {},
+  "sequences": {},
+  "tables": {
+    "public.conversations": {
+      "checkConstraints": {},
+      "columns": {
+        "duration_secs": {
+          "name": "duration_secs",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "integer"
+        },
+        "extracted_at": {
+          "name": "extracted_at",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "timestamp with time zone"
+        },
+        "id": {
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text"
+        },
+        "opener": {
+          "name": "opener",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "started_at": {
+          "name": "started_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "timestamp with time zone"
+        },
+        "summary": {
+          "name": "summary",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "user_id": {
+          "name": "user_id",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "uuid"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "foreignKeys": {
+        "conversations_user_id_users_id_fk": {
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
+          "name": "conversations_user_id_users_id_fk",
+          "onDelete": "no action",
+          "onUpdate": "no action",
+          "tableFrom": "conversations",
+          "tableTo": "users"
+        }
+      },
+      "indexes": {
+        "conversations_user_id_started_at_index": {
+          "columns": [
+            {
+              "asc": true,
+              "expression": "user_id",
+              "isExpression": false,
+              "nulls": "last"
+            },
+            {
+              "asc": false,
+              "expression": "started_at",
+              "isExpression": false,
+              "nulls": "last"
+            }
+          ],
+          "concurrently": false,
+          "isUnique": false,
+          "method": "btree",
+          "name": "conversations_user_id_started_at_index",
+          "with": {}
+        }
+      },
+      "isRLSEnabled": false,
+      "name": "conversations",
+      "policies": {},
+      "schema": "",
+      "uniqueConstraints": {}
+    },
+    "public.follow_ups": {
+      "checkConstraints": {},
+      "columns": {
+        "created_at": {
+          "default": "now()",
+          "name": "created_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "timestamp with time zone"
+        },
+        "id": {
+          "default": "gen_random_uuid()",
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "uuid"
+        },
+        "question": {
+          "name": "question",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "resolved_at": {
+          "name": "resolved_at",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "timestamp with time zone"
+        },
+        "source_conversation_id": {
+          "name": "source_conversation_id",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "user_id": {
+          "name": "user_id",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "uuid"
+        },
+        "why": {
+          "name": "why",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "foreignKeys": {
+        "follow_ups_source_conversation_id_conversations_id_fk": {
+          "columnsFrom": ["source_conversation_id"],
+          "columnsTo": ["id"],
+          "name": "follow_ups_source_conversation_id_conversations_id_fk",
+          "onDelete": "no action",
+          "onUpdate": "no action",
+          "tableFrom": "follow_ups",
+          "tableTo": "conversations"
+        },
+        "follow_ups_user_id_users_id_fk": {
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
+          "name": "follow_ups_user_id_users_id_fk",
+          "onDelete": "no action",
+          "onUpdate": "no action",
+          "tableFrom": "follow_ups",
+          "tableTo": "users"
+        }
+      },
+      "indexes": {},
+      "isRLSEnabled": false,
+      "name": "follow_ups",
+      "policies": {},
+      "schema": "",
+      "uniqueConstraints": {}
+    },
+    "public.memories": {
+      "checkConstraints": {},
+      "columns": {
+        "category": {
+          "name": "category",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "memory_category",
+          "typeSchema": "public"
+        },
+        "created_at": {
+          "default": "now()",
+          "name": "created_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "timestamp with time zone"
+        },
+        "fact": {
+          "name": "fact",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "id": {
+          "default": "gen_random_uuid()",
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "uuid"
+        },
+        "source_conversation_id": {
+          "name": "source_conversation_id",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "superseded_at": {
+          "name": "superseded_at",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "timestamp with time zone"
+        },
+        "user_id": {
+          "name": "user_id",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "uuid"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "foreignKeys": {
+        "memories_source_conversation_id_conversations_id_fk": {
+          "columnsFrom": ["source_conversation_id"],
+          "columnsTo": ["id"],
+          "name": "memories_source_conversation_id_conversations_id_fk",
+          "onDelete": "no action",
+          "onUpdate": "no action",
+          "tableFrom": "memories",
+          "tableTo": "conversations"
+        },
+        "memories_user_id_users_id_fk": {
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
+          "name": "memories_user_id_users_id_fk",
+          "onDelete": "no action",
+          "onUpdate": "no action",
+          "tableFrom": "memories",
+          "tableTo": "users"
+        }
+      },
+      "indexes": {
+        "memories_user_id_index": {
+          "columns": [
+            {
+              "asc": true,
+              "expression": "user_id",
+              "isExpression": false,
+              "nulls": "last"
+            }
+          ],
+          "concurrently": false,
+          "isUnique": false,
+          "method": "btree",
+          "name": "memories_user_id_index",
+          "where": "\"memories\".\"superseded_at\" is null",
+          "with": {}
+        }
+      },
+      "isRLSEnabled": false,
+      "name": "memories",
+      "policies": {},
+      "schema": "",
+      "uniqueConstraints": {}
+    },
+    "public.turns": {
+      "checkConstraints": {},
+      "columns": {
+        "conversation_id": {
+          "name": "conversation_id",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "id": {
+          "default": "gen_random_uuid()",
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "uuid"
+        },
+        "index": {
+          "name": "index",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "integer"
+        },
+        "llm_ttf_sentence_ms": {
+          "name": "llm_ttf_sentence_ms",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "integer"
+        },
+        "llm_ttfb_ms": {
+          "name": "llm_ttfb_ms",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "integer"
+        },
+        "message": {
+          "name": "message",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "role": {
+          "name": "role",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "turn_role",
+          "typeSchema": "public"
+        },
+        "time_in_call_secs": {
+          "name": "time_in_call_secs",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "integer"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "foreignKeys": {
+        "turns_conversation_id_conversations_id_fk": {
+          "columnsFrom": ["conversation_id"],
+          "columnsTo": ["id"],
+          "name": "turns_conversation_id_conversations_id_fk",
+          "onDelete": "no action",
+          "onUpdate": "no action",
+          "tableFrom": "turns",
+          "tableTo": "conversations"
+        }
+      },
+      "indexes": {},
+      "isRLSEnabled": false,
+      "name": "turns",
+      "policies": {},
+      "schema": "",
+      "uniqueConstraints": {
+        "turns_conversationId_index_unique": {
+          "columns": ["conversation_id", "index"],
+          "name": "turns_conversationId_index_unique",
+          "nullsNotDistinct": false
+        }
+      }
+    },
+    "public.users": {
+      "checkConstraints": {},
+      "columns": {
+        "created_at": {
+          "default": "now()",
+          "name": "created_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "timestamp with time zone"
+        },
+        "id": {
+          "default": "gen_random_uuid()",
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "uuid"
+        },
+        "name": {
+          "name": "name",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "next_opener": {
+          "name": "next_opener",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "foreignKeys": {},
+      "indexes": {},
+      "isRLSEnabled": false,
+      "name": "users",
+      "policies": {},
+      "schema": "",
+      "uniqueConstraints": {
+        "users_name_unique": {
+          "columns": ["name"],
+          "name": "users_name_unique",
+          "nullsNotDistinct": false
+        }
+      }
+    }
+  },
+  "version": "7",
+  "views": {}
+}

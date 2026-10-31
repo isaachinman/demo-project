@@ -20,4 +20,6 @@ export const config = {
   ...parseEnv(Env, process.env),
   // OpenRouter slug for Claude Sonnet 5.5, which supports structured outputs.
   BACKGROUND_MODEL: 'anthropic/claude-sonnet-5.5',
+  // The Cloudflare Pages origin allowed to call /api in production.
+  WEB_ORIGIN: 'https://demo-project.pages.dev',
 }

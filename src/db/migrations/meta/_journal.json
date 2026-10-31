@@ -1,5 +1,13 @@
 {
   "dialect": "postgresql",
-  "entries": [],
+  "entries": [
+    {
+      "breakpoints": true,
+      "idx": 0,
+      "tag": "0000_cuddly_frog_thor",
+      "version": "7",
+      "when": 1793461042986
+    }
+  ],
   "version": "7"
 }

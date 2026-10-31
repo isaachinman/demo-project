@@ -1,0 +1,19 @@
+{
+  "createdAt": "2026-10-31T15:38:12.170Z",
+  "id": "121b8642-e678-41e0-b9df-9153e421638e",
+  "kind": "architecture",
+  "payload": {
+    "summary": "Postgres holds users, conversations, turns, memories and follow_ups; memory is ours, ElevenLabs only supplies transcripts",
+    "details": [
+      "users are three seeded rows (Alex, Sam, Priya) with fixed UUIDs; init seeds them with onConflictDoNothing on every deploy",
+      "conversations.id is the ElevenLabs conversation_id; opener is the first agent message actually spoken; extractedAt marks the extraction job as done",
+      "turns are unique on (conversationId, index) so webhook redelivery is a no-op; agent turns carry ElevenLabs LLM latency (llmTtfbMs, llmTtfSentenceMs)",
+      "memories and follow_ups are never deleted: supersededAt and resolvedAt retire them",
+      "No auth: anyone with the URL can act as any seeded user; acceptable for a demo",
+      "The web app calls the API at VITE_API_ORIGIN (empty in dev, where Vite proxies /api); production CORS allows config.WEB_ORIGIN"
+    ]
+  },
+  "searchText": "schema users conversations turns memories follow ups seed cors api origin",
+  "source": "agent",
+  "subject": "data.schema"
+}

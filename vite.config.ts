@@ -24,6 +24,9 @@ export default defineConfig({
   },
   server: {
     // API_ORIGIN points the dev server at a different API (e.g. a test container).
-    proxy: { '/health': process.env.API_ORIGIN ?? 'http://localhost:3000' },
+    proxy: {
+      '/api': process.env.API_ORIGIN ?? 'http://localhost:3000',
+      '/health': process.env.API_ORIGIN ?? 'http://localhost:3000',
+    },
   },
 })

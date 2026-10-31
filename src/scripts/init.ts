@@ -1,4 +1,4 @@
-import { db, pool } from '@demo-project/db'
+import { db, pool, seedUsers } from '@demo-project/db'
 import { log } from '@demo-project/lib'
 
 import { migrate } from 'drizzle-orm/node-postgres/migrator'
@@ -9,6 +9,8 @@ await migrate(db, {
   migrationsFolder: 'src/db/migrations',
 })
 
+await seedUsers()
+
 await pool.end()
 
-log.info('init: migrations applied')
+log.info('init: migrations applied and users seeded')
