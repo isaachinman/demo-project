@@ -182,6 +182,9 @@ Tactile and precise: controls respond physically to the pointer, then settle wit
 ### Voice Orb (signature)
 The home screen's call button, ported from devl's GooOrb. Four blobs (Dimmed Ink core, Bench Ink, Inverse Graphite, Pressed Ink) merge through an SVG goo filter into a mercury droplet, so Bench Ink stays the only bright colour. Idle blobs drift on 6–8s loops; connecting speeds them to 2–3s. During a call the whole orb swells up to 1.28x with the live audio level (the user's mic while listening, the agent's voice while speaking), sampled each frame into a motion value and smoothed on the button spring (stiffness 380, damping 32). 192px on every breakpoint; press scales to 0.97.
 
+### Transcript panel
+The live call transcript, printed line by line from ElevenLabs. On wide screens it is a right-hand column that mirrors the sidebar (hairline edge, translucent Raised Charcoal); below `lg` it becomes a Rest-lift card under the call controls once the first line arrives. Speaker labels are 11px Dimmed Ink; the agent's lines are Bench Ink and the user's are Dimmed Ink. New lines rise and sharpen in over 200ms, and a column-reverse scroller keeps the newest in view.
+
 ### Ported coss ui primitives
 Button, Menu, Avatar and Tooltip live in `src/web/components/ui`. coss class names map onto the bench palette in `styles.css` (`popover` = card, `accent` = fill, `primary` = ink, `ring` = strong rule), so ported markup keeps its classes. Menus and tooltips are Raised Charcoal with the Float shadow and 8px corners.
 

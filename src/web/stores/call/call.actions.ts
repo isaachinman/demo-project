@@ -2,6 +2,7 @@ import type { DisconnectionDetails, HookOptions } from '@elevenlabs/react'
 
 import { v } from '@demo-project/lib/valibot'
 import { loadMemory, refreshAfterCall } from '@demo-project/web/stores/memory/memory.actions'
+import { clearTranscript } from '@demo-project/web/stores/transcript/transcript.actions'
 import { apiUrl } from '@demo-project/web/utils/apiUrl'
 
 import { type CallError, useCallStore } from './call.store'
@@ -121,6 +122,7 @@ export const startCall = async (startSession: StartSession) => {
   // Double taps while connecting (or during a call) are ignored.
   if (phase === 'idle' && selectedUserId) {
     useCallStore.setState({ error: null, phase: 'connecting' })
+    clearTranscript()
     await connect(selectedUserId, startSession)
   }
 }

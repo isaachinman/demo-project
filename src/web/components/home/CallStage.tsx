@@ -6,6 +6,7 @@ import { Button } from '@demo-project/web/components/ui/Button'
 import { Tooltip } from '@demo-project/web/components/ui/Tooltip'
 import { callConnected, callEnded, callErrored, loadUsers, startCall } from '@demo-project/web/stores/call/call.actions'
 import { selectSelectedUser, useCallStore } from '@demo-project/web/stores/call/call.store'
+import { addTranscriptLine, correctTranscriptLine } from '@demo-project/web/stores/transcript/transcript.actions'
 
 import { CallStatus } from './CallStatus'
 import { GooOrb } from './GooOrb'
@@ -16,9 +17,11 @@ const ORB_SIZE = 192
 
 export const CallStage: React.FC = () => {
   const conversation = useConversation({
+    onAgentResponseCorrection: correctTranscriptLine,
     onConnect: callConnected,
     onDisconnect: callEnded,
     onError: callErrored,
+    onMessage: addTranscriptLine,
   })
   const user = useCallStore(selectSelectedUser)
   const phase = useCallStore(state => state.phase)

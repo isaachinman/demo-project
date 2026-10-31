@@ -8,8 +8,9 @@ import { setDrawerOpen } from '@demo-project/web/stores/call/call.actions'
 import { CallStage } from './CallStage'
 import { MobileDrawer } from './MobileDrawer'
 import { SidebarBody } from './SidebarBody'
+import { TranscriptPanel } from './TranscriptPanel'
 
-// Voice-only port of devl's Assistant Start: the sidebar shell, the greeting and the orb. No text in, no transcript out.
+// Voice-only port of devl's Assistant Start: the sidebar shell, the greeting, the orb and the live transcript. No text input.
 export const HomePage: React.FC = () => (
   <ConversationProvider>
     <div className='flex h-svh w-full overflow-hidden bg-background font-sans text-foreground text-sm'>
@@ -35,10 +36,13 @@ export const HomePage: React.FC = () => (
           </span>
         </header>
 
-        <div className='flex min-h-0 flex-1 items-center justify-center overflow-y-auto px-4 py-10'>
+        <div className='flex min-h-0 flex-1 flex-col items-center justify-center-safe gap-8 overflow-y-auto px-4 py-10'>
           <CallStage />
+          <TranscriptPanel placement='inline' />
         </div>
       </main>
+
+      <TranscriptPanel placement='aside' />
     </div>
   </ConversationProvider>
 )
