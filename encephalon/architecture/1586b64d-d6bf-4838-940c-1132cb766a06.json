@@ -1,0 +1,19 @@
+{
+  "createdAt": "2026-10-31T15:39:23.145Z",
+  "id": "1586b64d-d6bf-4838-940c-1132cb766a06",
+  "kind": "architecture",
+  "payload": {
+    "summary": "ElevenLabs Agents own the live voice loop; two agents, robin-dev and robin-prod, share identical settings except the post-call webhook",
+    "details": [
+      "Custom LLM: server URL https://openrouter.ai/api/v1 with the OpenRouter key stored as the agent API-key secret; max tokens 150, temperature 0.8",
+      "Overrides enabled for system prompt and first message only; anything else overridden is rejected at session start",
+      "Authentication required: sessions start only with a WebRTC conversation token minted by POST /api/sessions (getWebrtcToken with xi-api-key)",
+      "TTS on the lowest-latency ElevenLabs model; system tool end_call enabled",
+      "ELEVENLABS_AGENT_ID is the dev agent locally and the prod agent on Railway",
+      "Persona name is AGENT_NAME in src/constants.ts, which is env-free so the web app and unit tests can import it"
+    ]
+  },
+  "searchText": "elevenlabs agent robin custom llm openrouter overrides token authentication end_call",
+  "source": "agent",
+  "subject": "voice.elevenlabs-agents"
+}

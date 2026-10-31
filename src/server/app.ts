@@ -5,6 +5,7 @@ import { pinoHttp } from 'pino-http'
 import { config } from '@demo-project/config'
 import { log } from '@demo-project/lib'
 import { healthEndpoint } from '@demo-project/server/health'
+import { sessionsEndpoint } from '@demo-project/server/sessions'
 import { usersEndpoint } from '@demo-project/server/users'
 
 import { cors } from 'hono/cors'
@@ -29,3 +30,4 @@ app.onError((error, context) => {
 
 app.get('/health', healthEndpoint)
 app.get('/api/users', usersEndpoint)
+app.post('/api/sessions', sessionsEndpoint)

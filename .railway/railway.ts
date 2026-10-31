@@ -10,6 +10,8 @@ export default defineRailway(() => {
 
   const env = {
     DATABASE_URL: db.env.DATABASE_URL,
+    ELEVENLABS_AGENT_ID: preserve(),
+    ELEVENLABS_API_KEY: preserve(),
     OPENROUTER_API_KEY: preserve(),
     REDIS_URL: cache.env.REDIS_URL,
   }
