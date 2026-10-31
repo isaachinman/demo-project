@@ -16,6 +16,7 @@
     "start:worker": "node dist/app/worker/index.js",
     "init": "node dist/app/scripts/init.js",
     "db:generate": "drizzle-kit generate",
+    "report:latency": "tsx --env-file=.env src/scripts/latencyReport.ts",
     "typecheck": "tsr generate && tsc --noEmit",
     "test": "vitest run",
     "lint": "biome check .",

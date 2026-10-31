@@ -1,0 +1,23 @@
+{
+  "createdAt": "2026-10-31T15:54:52.006Z",
+  "id": "a76a6b85-1b85-410d-b2c8-7fdd43eba402",
+  "kind": "architecture",
+  "payload": {
+    "summary": "ElevenLabs Agents own the live voice loop on an ElevenLabs built-in LLM; robin-dev and robin-prod share identical settings except the post-call webhook",
+    "details": [
+      "Live turns use a built-in ElevenLabs model (conversation_config.agent.prompt.llm, claude-haiku-5-5 to start); ElevenLabs holds no OpenRouter key and no custom LLM",
+      "Max tokens 150, temperature 0.8; system tool end_call enabled",
+      "Overrides enabled for system prompt and first message only; anything else overridden is rejected at session start",
+      "Authentication required: sessions start only with a WebRTC conversation token minted by POST /api/sessions (getWebrtcToken with xi-api-key)",
+      "ELEVENLABS_AGENT_ID is the dev agent locally and the prod agent on Railway",
+      "Persona name is AGENT_NAME in src/constants.ts, which is env-free so the web app and unit tests can import it",
+      "The live model is chosen by a real-call bake-off measured with `bun run report:latency --since <timestamp>` per candidate window"
+    ]
+  },
+  "searchText": "elevenlabs agent robin built-in llm overrides token authentication end_call latency bake-off",
+  "source": "agent",
+  "subject": "voice.elevenlabs-agents",
+  "supersedes": [
+    "1586b64d-d6bf-4838-940c-1132cb766a06"
+  ]
+}
