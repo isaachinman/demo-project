@@ -1,4 +1,4 @@
-import Anthropic from '@anthropic-ai/sdk'
+import { OpenRouter } from '@openrouter/sdk'
 import { toJsonSchema } from '@valibot/to-json-schema'
 
 import { config } from '@demo-project/config'
@@ -28,47 +28,81 @@ const jsonSchemaFor = (schema: v.GenericSchema) => {
   return jsonSchema
 }
 
-// Retry once on transient failures rather than holding a request open for the SDK default
-// (10 minutes x 3 attempts).
-export const anthropic = new Anthropic({
-  apiKey: config.ANTHROPIC_API_KEY ?? 'missing',
-  maxRetries: 1,
-  timeout: toMS.seconds(120),
+// The SDK's retry budget is time-based: a fast transient failure is retried about once, rather than
+// holding a request open across several attempts.
+export const openRouter = new OpenRouter({
+  apiKey: config.OPENROUTER_API_KEY ?? 'missing',
+  retryConfig: {
+    backoff: {
+      exponent: 1,
+      initialInterval: toMS.seconds(1),
+      maxElapsedTime: toMS.seconds(2),
+      maxInterval: toMS.seconds(1),
+    },
+    retryConnectionErrors: true,
+    strategy: 'backoff',
+  },
+  timeoutMs: toMS.seconds(120),
 })
+
+const parseJson = (text: string): { ok: true; json: unknown } | { ok: false } => {
+  try {
+    return { json: JSON.parse(text), ok: true }
+  } catch {
+    return { ok: false }
+  }
+}
+
+const textOf = (content: unknown) => (typeof content === 'string' ? content : '')
 
 export const callModel = async <T extends v.GenericSchema>({
   schema,
   system,
   prompt,
+  model = config.BACKGROUND_MODEL,
 }: ModelRequest<T>): Promise<ModelResult<T>> => {
-  const response = await anthropic.messages.create({
-    max_tokens: MAX_TOKENS,
-    messages: [
-      {
-        content: prompt,
-        role: 'user',
-      },
-    ],
-    model: config.ANTHROPIC_MODEL,
-    output_config: {
-      format: {
-        schema: jsonSchemaFor(schema),
+  const response = await openRouter.chat.send({
+    chatRequest: {
+      maxTokens: MAX_TOKENS,
+      messages: [
+        {
+          content: system,
+          role: 'system',
+        },
+        {
+          content: prompt,
+          role: 'user',
+        },
+      ],
+      model,
+      responseFormat: {
+        jsonSchema: {
+          name: 'output',
+          schema: jsonSchemaFor(schema),
+          strict: true,
+        },
         type: 'json_schema',
       },
+      stream: false,
     },
-    system,
   })
 
-  const text = response.content.flatMap(block => (block.type === 'text' ? [block.text] : [])).join('')
-  const usage = { ...response.usage }
-  const parsed = response.stop_reason === 'end_turn' ? v.safeParse(schema, JSON.parse(text)) : null
+  // Non-streaming requests always resolve to a ChatResult; the SDK types both shapes as one union.
+  const result = 'choices' in response ? response : null
+  const choice = result?.choices[0] ?? null
+  const text = textOf(choice?.message.content)
+  const usage = { ...result?.usage }
+  const finishReason = choice?.finishReason ?? null
+  const json = finishReason === 'stop' ? parseJson(text) : null
+  const parsed = json?.ok ? v.safeParse(schema, json.json) : null
+  const failure = json && !json.ok ? 'output was not JSON' : `model stopped with ${finishReason}`
 
   return parsed?.success
-    ? { model: response.model, ok: true, output: parsed.output, usage }
+    ? { model: result?.model ?? model, ok: true, output: parsed.output, usage }
     : {
-        model: response.model,
+        model: result?.model ?? model,
         ok: false,
-        reason: parsed ? 'output failed validation' : `model stopped with ${response.stop_reason}`,
+        reason: parsed ? 'output failed validation' : failure,
         text,
         usage,
       }

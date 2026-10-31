@@ -4,6 +4,8 @@ export type ModelRequest<T extends v.GenericSchema> = {
   schema: T
   system: string
   prompt: string
+  // Defaults to config.BACKGROUND_MODEL.
+  model?: string
 }
 
 export type ModelResult<T extends v.GenericSchema> =

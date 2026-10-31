@@ -1,0 +1,23 @@
+{
+  "createdAt": "2026-10-31T15:37:06.463Z",
+  "id": "23e31462-017f-4651-8274-6823d8b6d6cb",
+  "kind": "decision",
+  "payload": {
+    "summary": "callModel sends OpenRouter Chat Completions with response_format json_schema (strict) built from a valibot schema, then validates the reply with valibot again",
+    "rationale": [
+      "All model access goes through OpenRouter (@openrouter/sdk), for both background calls and the ElevenLabs live agent",
+      "Structured outputs accept anyOf but not oneOf, which valibot variant emits; toJsonSchema overrideSchema renames oneOf to anyOf node by node",
+      "The $schema draft marker is dropped because the API has no use for it"
+    ],
+    "consequences": [
+      "Any finish reason other than stop, non-JSON output, or a valibot failure returns ok: false",
+      "The default model is the BACKGROUND_MODEL constant in src/config.ts (an OpenRouter slug); callers may pass model per request"
+    ]
+  },
+  "searchText": "openrouter structured outputs valibot json schema oneOf anyOf callModel",
+  "source": "agent",
+  "subject": "ai.structured-outputs",
+  "supersedes": [
+    "f9d9b327-f5f1-4340-955c-8464a3b24f2f"
+  ]
+}

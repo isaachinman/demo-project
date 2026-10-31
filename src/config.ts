@@ -10,13 +10,14 @@ const OptionalString = v.pipe(
 )
 
 const Env = v.object({
-  ANTHROPIC_API_KEY: OptionalString,
   DATABASE_URL: v.string(),
+  OPENROUTER_API_KEY: OptionalString,
   PORT: v.pipe(v.optional(v.string(), '3000'), v.toNumber(), v.integer()),
   REDIS_URL: v.string(),
 })
 
 export const config = {
   ...parseEnv(Env, process.env),
-  ANTHROPIC_MODEL: 'claude-sonnet-5-5',
+  // OpenRouter slug for Claude Sonnet 5.5, which supports structured outputs.
+  BACKGROUND_MODEL: 'anthropic/claude-sonnet-5.5',
 }

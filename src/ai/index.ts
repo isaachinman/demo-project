@@ -1,1 +1,1 @@
-export { anthropic, callModel } from './client'
+export { callModel, openRouter } from './client'

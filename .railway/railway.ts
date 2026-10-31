@@ -9,8 +9,8 @@ export default defineRailway(() => {
   const source = github('isaachinman/demo-project', { branch: 'main', checkSuites: true })
 
   const env = {
-    ANTHROPIC_API_KEY: preserve(),
     DATABASE_URL: db.env.DATABASE_URL,
+    OPENROUTER_API_KEY: preserve(),
     REDIS_URL: cache.env.REDIS_URL,
   }
 

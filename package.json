@@ -24,8 +24,8 @@
     "build": "bun run build:app && bun run build:web"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "0.125.0",
     "@hono/node-server": "2.1.1",
+    "@openrouter/sdk": "1.4.25",
     "@tanstack/react-router": "1.170.36",
     "@untitledui/icons": "0.0.22",
     "@valibot/to-json-schema": "1.8.0",
