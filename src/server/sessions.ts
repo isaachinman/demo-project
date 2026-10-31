@@ -1,11 +1,9 @@
-import { eq } from 'drizzle-orm'
 import type { Context } from 'hono'
 
 import { config } from '@demo-project/config'
-import { db } from '@demo-project/db'
-import { users } from '@demo-project/db/schema'
 import { log, v } from '@demo-project/lib'
 import { buildAgentPrompt } from '@demo-project/utils/agent/buildAgentPrompt'
+import { loadAgentContext } from '@demo-project/utils/agent/loadAgentContext'
 import { elevenlabs } from '@demo-project/voice'
 
 const SessionRequest = v.object({
@@ -34,12 +32,15 @@ const mintToken = async () => {
 }
 
 const startSession = async (context: Context, userId: string) => {
-  const [user] = await db.select({ name: users.name }).from(users).where(eq(users.id, userId))
-  const conversationToken = user ? await mintToken() : null
+  const agentContext = await loadAgentContext(userId)
+  const conversationToken = agentContext ? await mintToken() : null
 
-  return user && conversationToken
-    ? context.json({ conversationToken, ...buildAgentPrompt({ name: user.name }) })
-    : context.json(user ? { error: 'voice_unavailable' } : { error: 'user_not_found' }, user ? 502 : 404)
+  return agentContext && conversationToken
+    ? context.json({ conversationToken, ...buildAgentPrompt(agentContext) })
+    : context.json(
+        agentContext ? { error: 'voice_unavailable' } : { error: 'user_not_found' },
+        agentContext ? 502 : 404,
+      )
 }
 
 // Everything the browser needs to start a voice conversation with the agent, personalised for the user.
