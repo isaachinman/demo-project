@@ -10,7 +10,7 @@
         "custom_llm": null,
         "ignore_default_personality": false,
         "knowledge_base": [],
-        "llm": "gemini-2.5-flash",
+        "llm": "claude-haiku-5-5",
         "max_tokens": 150,
         "mcp_server_ids": [],
         "native_mcp_server_ids": [],
@@ -44,9 +44,14 @@
     "conversation": {
       "client_events": [
         "audio",
-        "interruption"
+        "interruption",
+        "agent_response",
+        "agent_response_correction",
+        "agent_chat_response_part",
+        "user_transcript",
+        "tentative_user_transcript"
       ],
-      "max_duration_seconds": 600,
+      "max_duration_seconds": 3600,
       "text_only": false
     },
     "language_presets": {},
@@ -207,7 +212,7 @@
     "workspace_overrides": {
       "conversation_initiation_client_data_webhook": null,
       "webhooks": {
-        "post_call_webhook_id": null
+        "post_call_webhook_id": "05c18d1f7247406fa835a43e5198bc23"
       }
     }
   },
