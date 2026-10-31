@@ -24,13 +24,16 @@
     "build": "bun run build:app && bun run build:web"
   },
   "dependencies": {
+    "@base-ui/react": "1.9.0",
     "@elevenlabs/elevenlabs-js": "2.73.0",
+    "@elevenlabs/react": "1.18.0",
     "@hono/node-server": "2.1.1",
     "@openrouter/sdk": "1.4.25",
     "@tanstack/react-router": "1.170.36",
     "@untitledui/icons": "0.0.22",
     "@valibot/to-json-schema": "1.8.0",
     "bullmq": "5.81.5",
+    "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "drizzle-orm": "0.45.2",
     "hono": "4.13.7",
@@ -43,7 +46,8 @@
     "react-dom": "18.3.1",
     "tailwind-merge": "3.7.0",
     "tsx": "4.23.13",
-    "valibot": "1.5.0"
+    "valibot": "1.5.0",
+    "zustand": "5.0.15"
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.0",

@@ -1,0 +1,21 @@
+{
+  "createdAt": "2026-10-31T15:45:05.363Z",
+  "id": "3c550281-4fe4-439c-bf65-5b8d10d80531",
+  "kind": "workflow",
+  "payload": {
+    "summary": "ElevenLabs agents are managed as code with the ElevenLabs CLI from elevenlabs/",
+    "steps": [
+      "Edit elevenlabs/agent_configs/<agent>.json, then run `elevenlabs agents push --dry-run` and `elevenlabs agents push` from elevenlabs/",
+      "agents.json maps each config file to its live agent ID; ELEVENLABS_AGENT_ID in the environment selects which agent the API mints tokens for",
+      "Pull dashboard edits back with `elevenlabs agents pull --update` so the configs stay the source of truth"
+    ],
+    "notes": [
+      "CLI 1.8.0: `elevenlabs agents add --dry-run` still creates the agent on ElevenLabs and writes agents.json; it is not a preview",
+      "Agents require auth (platform_settings.auth.enable_auth) and allow overrides only for the system prompt and first message",
+      "The OpenRouter key must be an ElevenLabs workspace secret referenced from conversation_config.agent.prompt.custom_llm.api_key.secret_id; the workspace also holds unrelated secrets, so never bulk-edit or delete secrets"
+    ]
+  },
+  "searchText": "elevenlabs cli agents push config agent id custom llm openrouter secret",
+  "source": "agent",
+  "subject": "voice.elevenlabs-agents"
+}

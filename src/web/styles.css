@@ -7,6 +7,21 @@
   --color-card: var(--card);
   --color-border: var(--border);
   --color-hairline: var(--hairline);
+  --color-border-strong: var(--border-strong);
+  --color-fill: var(--fill);
+  --color-ink-hover: var(--ink-hover);
+  --color-ink-inverse: var(--ink-inverse);
+  --color-failure: var(--failure);
+  --color-attention: var(--attention);
+  /* coss ui names, mapped onto the bench palette so ported components keep their classes. */
+  --color-popover: var(--card);
+  --color-accent: var(--fill);
+  --color-primary: var(--ink);
+  --color-primary-foreground: var(--ink-inverse);
+  --color-input: var(--border);
+  --color-ring: var(--border-strong);
+  --radius-sm: 8px;
+  --radius-lg: var(--radius);
   --radius-md: var(--radius);
   --shadow-rest-lift: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -12px rgb(0 0 0 / 0.6);
   --shadow-hover-lift: 0 2px 4px rgb(0 0 0 / 0.3), 0 16px 32px -12px rgb(0 0 0 / 0.65);
@@ -66,6 +81,11 @@ body {
   font-family: var(--font-body);
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
+}
+
+* {
+  scrollbar-color: var(--border) transparent;
+  scrollbar-width: thin;
 }
 
 ::selection {

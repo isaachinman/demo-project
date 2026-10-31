@@ -179,6 +179,12 @@ Tactile and precise: controls respond physically to the pointer, then settle wit
 - **Focus:** border brightens to Dimmed Ink.
 - **Error:** border and message in Ember.
 
+### Voice Orb (signature)
+The home screen's call button, ported from devl's GooOrb. Four blobs (Dimmed Ink core, Bench Ink, Inverse Graphite, Pressed Ink) merge through an SVG goo filter into a mercury droplet, so Bench Ink stays the only bright colour. Idle blobs drift on 6–8s loops; connecting speeds them to 2–3s. During a call the whole orb swells up to 1.28x with the live audio level (the user's mic while listening, the agent's voice while speaking), sampled each frame into a motion value and smoothed on the button spring (stiffness 380, damping 32). 192px on every breakpoint; press scales to 0.97.
+
+### Ported coss ui primitives
+Button, Menu, Avatar and Tooltip live in `src/web/components/ui`. coss class names map onto the bench palette in `styles.css` (`popover` = card, `accent` = fill, `primary` = ink, `ring` = strong rule), so ported markup keeps its classes. Menus and tooltips are Raised Charcoal with the Float shadow and 8px corners.
+
 ### Blur Rise (signature)
 The page's one authored entrance: text drifts up 0.4em and comes into focus from an 8px blur, a word or letter at a time, staggered by 22–35ms and capped at 0.6s in total. Springs use stiffness 170, damping 22, mass 0.7; blur and opacity ease out on `cubic-bezier(0.23, 1, 0.32, 1)`. Used for headings and intros, once per view.
 

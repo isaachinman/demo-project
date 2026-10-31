@@ -388,14 +388,24 @@ Posting a seeded user's id returns everything the browser needs to start an auth
 
 ### In scope
 
-- **Spike first:** in the ElevenLabs dashboard, set the agent's custom LLM to server URL `https://openrouter.ai/api/v1`, use a candidate OpenRouter model id, and store the OpenRouter key as the agent's API-key secret. Run a dashboard test call. Proceed only if replies stream.
-- **Two agents, `robin-dev` and `robin-prod`,** with identical settings. Only the post-call webhook URL differs (DEMO-5). Record the settings list in Encephalon:
-  - custom LLM (OpenRouter), max tokens 150, temperature 0.8;
-  - overrides enabled for **system prompt** and **first message** only;
-  - authentication required;
-  - TTS on ElevenLabs' lowest-latency model and a chosen voice (tuned in DEMO-9);
-  - system tool `end_call` enabled.
-- `ELEVENLABS_AGENT_ID` env var (dev agent locally, prod agent on Railway).
+- **Agents as code with the ElevenLabs CLI** (`brew install elevenlabs/tap/elevenlabs`; it reads `ELEVENLABS_API_KEY` from `.env`). Commit the files in an `elevenlabs/` directory, and record the workflow in Encephalon:
+  1. `elevenlabs agents init` creates `agents.json` and `agent_configs/`.
+  2. `elevenlabs agents add "robin-dev"` and `elevenlabs agents add "robin-prod"`.
+  3. Edit both configs.
+  4. `elevenlabs agents push --dry-run`, then `elevenlabs agents push`, creates the agents on ElevenLabs. Take the agent IDs from the push output or `elevenlabs agents status`.
+  5. Later changes are edits to the configs followed by `push`. Dashboard edits are pulled back with `elevenlabs agents pull --update`.
+- **One-time workspace secret:** create `OPENROUTER_API_KEY` as an ElevenLabs workspace secret, via the dashboard or the secrets API. Agent configs reference it by `secret_id`, so no key is committed.
+- **Agent config** (both agents identical except the post-call webhook, DEMO-5):
+  - `conversation_config.agent.prompt`:
+    - `custom_llm`: `{ url: 'https://openrouter.ai/api/v1', model_id: <candidate slug>, api_key: { secret_id: <OPENROUTER_API_KEY secret id> }, api_type: 'chat_completions' }`;
+    - `max_tokens: 150`, `temperature: 0.8`;
+    - system tool `end_call` enabled;
+    - placeholder prompt (always overridden per session).
+  - `platform_settings.overrides.conversation_config_override.agent`: `{ first_message: true, prompt: { prompt: true } }`, and nothing else overridable.
+  - Authentication required, so sessions only start with a token from our API.
+  - `conversation_config.tts`: lowest-latency model; voice tuned in DEMO-9.
+- **Spike first:** push `robin-dev`, then run "Test AI Agent" in the dashboard. Continue only if OpenRouter replies stream back.
+- `ELEVENLABS_AGENT_ID` env var: dev agent ID in `.env`, prod agent ID on Railway.
 - `POST /api/sessions` with body `{ userId }`, validated with valibot:
   1. Load the user (404 if unknown).
   2. Build `{ prompt, firstMessage }` with `buildAgentPrompt` (persona-only version here, filled in DEMO-7).
@@ -438,6 +448,7 @@ Posting a seeded user's id returns everything the browser needs to start an auth
 
 ## Acceptance criteria
 
+- Given `elevenlabs/agents.json` and both agent configs committed, when `elevenlabs agents push --dry-run` runs, then it reports no changes against the live agents.
 - Given the dev agent, when the dashboard test call runs, then OpenRouter-backed replies are heard.
 - Given Alex's id, when `POST /api/sessions` is called, then the response holds a token, a prompt containing "Alex", and the first-meeting opener.
 - Given a random UUID, when it is posted, then the response is 404.
@@ -454,7 +465,7 @@ Posting a seeded user's id returns everything the browser needs to start an auth
 
 - Feature flag: none
 - Validation owner: Isaac
-- Rollout steps: create both agents, set `ELEVENLABS_API_KEY` and `ELEVENLABS_AGENT_ID` in Railway, then merge.
+- Rollout steps: `elevenlabs agents push`, set `ELEVENLABS_API_KEY` and the prod `ELEVENLABS_AGENT_ID` in Railway, then merge.
 - Legacy deprecation: N/A
 - Rollback: revert.
 
@@ -1176,8 +1187,8 @@ Time to first sentence is at p50 ≤ 0.6s and p90 ≤ 1.0s on real calls, with t
   - **Records:** time to first token and time to first sentence-ending punctuation.
   - **Output:** p50/p90 per model.
 - Set the OpenRouter account default provider sort to `latency` (account setting, no code).
-- **Pick the model:** the fastest candidate that passes DEMO-10 thresholds. Set it on both agents and record the bake-off table in Encephalon.
-- **ElevenLabs tuning on both agents:**
+- **Pick the model:** the fastest candidate that passes DEMO-10 thresholds. Set it as `custom_llm.model_id` in both agent configs, run `elevenlabs agents push`, and record the bake-off table in Encephalon.
+- **ElevenLabs tuning, in both agent configs then `push`:**
   - lowest-latency TTS model;
   - voice: a shortlist of 3 auditioned in the dashboard;
   - turn eagerness tested at normal and eager;
@@ -1233,7 +1244,7 @@ Time to first sentence is at p50 ≤ 0.6s and p90 ≤ 1.0s on real calls, with t
 - Validation owner: Isaac
 - Rollout steps: merge the scripts; change the model on `robin-dev`, verify, then change `robin-prod`.
 - Legacy deprecation: N/A
-- Rollback: revert the agent model in the ElevenLabs dashboard.
+- Rollback: revert the agent config change and run `elevenlabs agents push`.
 
 ## Dependencies
 
