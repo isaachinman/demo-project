@@ -1,5 +1,8 @@
 // Each job type's payload, keyed by its jobType. Add a job by adding an entry here and its handler.
 type JobPayloads = {
+  extractMemories: {
+    conversationId: string
+  }
   ping: {
     text: string
   }

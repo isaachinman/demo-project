@@ -1,0 +1,24 @@
+{
+  "createdAt": "2026-10-31T15:49:39.136Z",
+  "id": "6e507ca1-a0ae-4ecf-8036-9c25689d511f",
+  "kind": "workflow",
+  "payload": {
+    "summary": "`bun run dev` starts the whole stack locally",
+    "steps": [
+      "docker compose starts Postgres and Redis and waits for them to be healthy",
+      "concurrently runs dev:server, dev:worker and dev:web with labelled output; Ctrl-C stops all three",
+      "Compose containers keep running afterwards; stop them with `docker compose stop`",
+      "To receive ElevenLabs post-call webhooks locally, run `cloudflared tunnel --url http://localhost:3000` and set <tunnel>/api/webhooks/elevenlabs as the robin-dev agent webhook; its secret goes in ELEVENLABS_WEBHOOK_SECRET in .env"
+    ],
+    "notes": [
+      "Stopping sends the server more than one signal (tsx and concurrently both forward), so its shutdown is idempotent: closing the pg pool twice rejects",
+      "The tunnel URL changes each run, so the dev agent webhook must be updated after restarting cloudflared"
+    ]
+  },
+  "searchText": "local development dev script docker compose concurrently shutdown cloudflared tunnel webhook",
+  "source": "agent",
+  "subject": "dev.local",
+  "supersedes": [
+    "c445fdc8-85f8-4b15-a3d6-182fff87b3be"
+  ]
+}

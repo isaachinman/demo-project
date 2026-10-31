@@ -32,7 +32,7 @@
   },
   "extends": ["ultracite"],
   "files": {
-    "includes": ["**", "!.claude", "!.impeccable", "!encephalon"]
+    "includes": ["**", "!.claude", "!.impeccable", "!elevenlabs", "!encephalon"]
   },
   "formatter": {
     "indentStyle": "space",

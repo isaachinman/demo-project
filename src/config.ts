@@ -13,6 +13,7 @@ const Env = v.object({
   DATABASE_URL: v.string(),
   ELEVENLABS_AGENT_ID: OptionalString,
   ELEVENLABS_API_KEY: OptionalString,
+  ELEVENLABS_WEBHOOK_SECRET: OptionalString,
   OPENROUTER_API_KEY: OptionalString,
   PORT: v.pipe(v.optional(v.string(), '3000'), v.toNumber(), v.integer()),
   REDIS_URL: v.string(),

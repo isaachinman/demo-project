@@ -12,6 +12,7 @@ export default defineRailway(() => {
     DATABASE_URL: db.env.DATABASE_URL,
     ELEVENLABS_AGENT_ID: preserve(),
     ELEVENLABS_API_KEY: preserve(),
+    ELEVENLABS_WEBHOOK_SECRET: preserve(),
     OPENROUTER_API_KEY: preserve(),
     REDIS_URL: cache.env.REDIS_URL,
   }
