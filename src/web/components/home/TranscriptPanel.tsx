@@ -38,10 +38,10 @@ export const TranscriptPanel: React.FC<Props> = ({ placement }) => {
             className='flex flex-col gap-3'
           >
             <AnimatePresence initial={false}>
-              {lines.map(({ id, role, message }) => (
+              {lines.map(({ key, role, message, final }) => (
                 <MemoryItem
                   className='flex flex-col gap-0.5'
-                  key={`${id}-${role}`}
+                  key={key}
                 >
                   <span className='font-medium text-[11px] text-muted-foreground'>
                     {role === 'agent' ? AGENT_NAME : (user?.name ?? 'You')}
@@ -50,9 +50,16 @@ export const TranscriptPanel: React.FC<Props> = ({ placement }) => {
                     className={cn(
                       'text-pretty leading-relaxed',
                       role === 'agent' ? 'text-foreground' : 'text-muted-foreground',
+                      !final && 'opacity-70',
                     )}
                   >
                     {message}
+                    {!final && (
+                      <span
+                        aria-hidden
+                        className='ms-0.5 inline-block h-3.5 w-1 translate-y-0.5 rounded-full bg-current motion-safe:animate-pulse'
+                      />
+                    )}
                   </span>
                 </MemoryItem>
               ))}
